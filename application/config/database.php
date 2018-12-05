@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'Dental',
+	'hostname' => 'jakartadentalproject.com',
+	'username' => 'u5817932_root',
+	'password' => 'adji142',
+	'database' => 'u5817932_dentalproj',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
