@@ -69,7 +69,7 @@ $galery = $this->M_controllroom->Getgaleri()->result();
 						</div>
 					</div>
 					<div class="col-lg-6 w3layouts_choose_right_grid1">
-						<img src="<?php echo base_url().'front/images/Capture222.png'?>">
+						<img src="<?php echo base_url().'front/images/Capture222.PNG'?>">
 					</div>
 				</div>
 			</div> 
@@ -117,7 +117,7 @@ $galery = $this->M_controllroom->Getgaleri()->result();
 				</div>
 					<div class="row py-lg-12">
 					<div class="col-lg-12 w3layouts_choose_right_grid1">
-						<center><img src="<?php echo base_url().'front/images/Promo.jpeg'?>"></center>
+						<center><img src="<?php echo base_url().'front/images/promo.jpeg'?>"></center>
 					</div>
 					</div>
 			</div>
