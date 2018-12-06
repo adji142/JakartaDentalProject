@@ -2,7 +2,7 @@
   require_once(APPPATH."views/back/part/header.php");
   require_once(APPPATH."views/back/part/sidebar.php");
 
-  $post = $this->m_controllroom->GetStaff()->result();
+  $post = $this->M_controllroom->Getgaleri()->result();
 ?>
 <link href="<?php echo base_url()?>assets/dropzone.min.css" rel="stylesheet">
 <script src="<?php echo base_url()?>assets/dropzone.min.js"></script>
@@ -45,15 +45,15 @@ body{
             ?>
           </font>
         </p>
-      	<form role="form" enctype="multipart/form-data" action="<?php echo base_url().'index.php/back/controlroom/stafstore'?>" method="post">
+      	<form role="form" enctype="multipart/form-data" action="<?php echo base_url().'index.php/back/controlroom/galeristore'?>" method="post">
           <div class="box-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Tag line Foto</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Nama" name="tag">
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Tag Line" name="tag">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Deskripsi singkat 60 char</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Jabatan" name="desc" maxlength="60">
+              <label for="exampleInputEmail1">Deskripsi singkat max 30 char</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Deskripsi" name="desc" maxlength="30">
             </div>
             <div class="form-group">
               <label for="exampleInputFile">File input</label>
@@ -76,8 +76,7 @@ body{
         <table id="example1" class="table table-bordered table-hover">
           <thead>
           <tr>
-            <th>Name</th>
-            <th>Jabatan</th>
+            <th>Tag</th>
             <th>Foto</th>
             <th>Action</th>
           </tr>
@@ -87,10 +86,9 @@ body{
               foreach ($post as $key) {
                 echo "
                   <tr>
-                    <td>".$key->name."</td>
-                    <td>".$key->position."</td>
-                    <td><img src='".base_url()."front/images/Staff/".$key->file_name."' class='img-circle photo' height='5%'/></td>
-                    <td> <a href='".base_url()."index.php/back/controlroom/deletestaff/".$key->id."' class = 'btn btn-danger'>Delete</a>
+                    <td>".$key->tag."</td>
+                    <td><img src='".base_url()."front/images/galery/".$key->image."' class='img-circle photo' height='5%'/></td>
+                    <td> <a href='".base_url()."index.php/back/controlroom/deletegaleri/".$key->id."' class = 'btn btn-danger'>Delete</a>
                     </td>
                   </tr>
                 ";

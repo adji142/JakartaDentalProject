@@ -2,7 +2,7 @@
   require_once(APPPATH."views/back/part/header.php");
   require_once(APPPATH."views/back/part/sidebar.php");
 
-  $post = $this->m_controllroom->GetStaff()->result();
+  $post = $this->M_controllroom->GetStaff()->result();
 ?>
 <link href="<?php echo base_url()?>assets/dropzone.min.css" rel="stylesheet">
 <script src="<?php echo base_url()?>assets/dropzone.min.js"></script>

@@ -2,7 +2,7 @@
   require_once(APPPATH."views/back/part/header.php");
   require_once(APPPATH."views/back/part/sidebar.php");
 
-  $post = $this->m_controllroom->Getabout()->result();
+  $post = $this->M_controllroom->Getabout()->result();
 ?>
 <div class="content-wrapper">
 <section class="content">

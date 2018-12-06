@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class controlroom extends CI_Controller
+class Controlroom extends CI_Controller
 {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('back/m_controllroom');
+		$this->load->model('M_controllroom');
 		$this->load->helper(array('url','file'));
 	}
 	function slider()
@@ -67,7 +67,7 @@ class controlroom extends CI_Controller
 	function saveslider()
 	{
 		// Begin ceking image data
-		$dataImage = $this->m_controllroom->ImgSliderdata();
+		$dataImage = $this->M_controllroom->ImgSliderdata();
 		$image1 = './front/images/bg1.jpg';
 		$image2 = './front/images/bg2.jpg';
 		$image3 = './front/images/bg3.jpg';
@@ -90,7 +90,7 @@ class controlroom extends CI_Controller
 				// echo "string".$urut;
 				$urut +=1;
 			}
-			$this->m_controllroom->DeleteStaging();
+			$this->M_controllroom->DeleteStaging();
 			$this->session->set_flashdata('result_Sukses','Upload Sider Berhasil');
             redirect('index.php/back/dashboard/slider');
 		}
@@ -129,7 +129,7 @@ class controlroom extends CI_Controller
 					 'photo' => $nama_photo,
 					 'file_name'=>$nama_photo
 					);
-				$this->m_controllroom->storestaff($input,'app_staff');
+				$this->M_controllroom->storestaff($input,'app_staff');
 				$this->session->set_flashdata('result_success','Tambah Staff Berhasil');
                	redirect('index.php/back/dashboard/staff');
 	        	// $this->db->insert('staging_image',array('filename'=>$nama,'token'=>$token));
@@ -143,7 +143,7 @@ class controlroom extends CI_Controller
 	function deletestaff($id)
 	{
 		try {
-			$this->m_controllroom->deletestaff($id);
+			$this->M_controllroom->deletestaff($id);
 			$this->session->set_flashdata('result_success','Data Berhasil Di Hapus');
 			redirect('index.php/back/dashboard/staff');
 
@@ -189,7 +189,7 @@ class controlroom extends CI_Controller
         		'inuse'=>0
         	);
         	try {
-        		$this->m_controllroom->storeabout($input,'app_about');
+        		$this->M_controllroom->storeabout($input,'app_about');
         		$this->session->set_flashdata('result_success','Data Berhasil diSimpan');
         		redirect('index.php/back/dashboard/about');
         	} catch (Exception $e) {
@@ -202,7 +202,7 @@ class controlroom extends CI_Controller
 	function deleteabout($id)
 	{
 		try {
-			$this->m_controllroom->deleteabout($id);
+			$this->M_controllroom->deleteabout($id);
 			$this->session->set_flashdata('result_success','Data Berhasil Di Hapus');
 			redirect('index.php/back/dashboard/about');
 
@@ -214,14 +214,52 @@ class controlroom extends CI_Controller
 	function default($id)
 	{
 		try {
-			$this->m_controllroom->setdefault($id);
-			$this->m_controllroom->Rollback($id);
+			$this->M_controllroom->setdefault($id);
+			$this->M_controllroom->Rollback($id);
 			$this->session->set_flashdata('result_success','Data Berhasil Di Hapus');
 			redirect('index.php/back/dashboard/about');
 
 		} catch (Exception $e) {
 			$this->session->set_flashdata('result_error',$e);
         	redirect('index.php/back/dashboard/about');
+		}
+	}
+	function galeristore()
+	{
+		$tag = $this->input->post('tag');
+		$desc = $this->input->post('desc');
+
+			$config['upload_path']   = './front/images/galery';
+	        $config['allowed_types'] = 'gif|jpg|png|ico';
+	        $this->load->library('upload',$config);
+	        if($this->upload->do_upload('image')){
+	        	$id_reg = $this->session->userdata('id_reg');
+	        	$nama_photo=$this->upload->data('file_name');
+		        	$input = array
+					('tag' => $tag,
+					 'desc' => $desc,
+					 'image'=>$nama_photo
+					);
+				$this->M_controllroom->storeGalery($input,'app_galery');
+				$this->session->set_flashdata('result_success','Tambah Galeri Berhasil');
+               	redirect('index.php/back/dashboard/galeri');
+	        	// $this->db->insert('staging_image',array('filename'=>$nama,'token'=>$token));
+	        }
+			else{
+				$this->session->set_flashdata('result_error','Error Getting Image');
+               redirect('index.php/back/dashboard/galeri');
+			}
+	}
+	function deletegaleri($id)
+	{
+		try {
+			$this->M_controllroom->deletegaleri($id);
+			$this->session->set_flashdata('result_success','Data Berhasil Di Hapus');
+			redirect('index.php/back/dashboard/galeri');
+
+		} catch (Exception $e) {
+			$this->session->set_flashdata('result_error',$e);
+        	redirect('index.php/back/dashboard/galeri');
 		}
 	}
 }

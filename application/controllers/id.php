@@ -2,7 +2,7 @@
 /**
 * 
 */
-class id extends CI_Controller
+class Id extends CI_Controller
 {
 	private $perPage = 6;
 	function __construct()
@@ -10,8 +10,8 @@ class id extends CI_Controller
 		parent::__construct();
           //session_start();
         $this->load->helper('cookie');
-        $this->load->model('back/m_dash');
-		$this->load->model('back/m_controllroom');
+        $this->load->model('M_dash');
+		$this->load->model('M_controllroom');
 	}
 	function index(){
 		$this->load->view('front/index');

@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class login extends CI_Controller
+class Login extends CI_Controller
 {
 
      public function __construct()
@@ -7,7 +7,7 @@ class login extends CI_Controller
           parent::__construct();
           //session_start();
           $this->load->helper('cookie');
-          $this->load->model('m_login');
+          $this->load->model('M_login');
           // $this->load->model('m_id');
           // $this->load->model('auth/registration');
           $this->load->library('user_agent');
@@ -17,7 +17,7 @@ class login extends CI_Controller
      public function index()
      {
           $data['title']="Sign in - Towo account";
-          $this->load->view('account\login',$data);
+          $this->load->view('account/Login',$data);
      }
      //<login>
       function proses(){
@@ -30,13 +30,13 @@ class login extends CI_Controller
           }
           else{
                $tgl_login = date("Y-m-d H:i:s");
-               $jam_login=date("H:i:s");
+               $jaM_login=date("H:i:s");
                $usr = $this->input->post('username');
                $pwd = $this->input->post('password');
                $u=$usr;
                $p=md5($pwd);
                $status ='';
-               $cek= $this->m_login->get_user($u,$p);
+               $cek= $this->M_login->get_user($u,$p);
                $id = "";
                if ($this->agent->is_browser()){
                $agent = $this->agent->browser().' '.$this->agent->version();
@@ -46,12 +46,12 @@ class login extends CI_Controller
                $agent = 'Data user gagal di dapatkan';
                }
                if($cek->num_rows() > 0){
-                    // $cek2nd=$this->m_login->secon_step($status,$u);
+                    // $cek2nd=$this->M_login->secon_step($status,$u);
                     foreach ($cek->result() as $qad) {
                          $sess_data['id']=$qad->id;
                          $sess_data['user']=$qad->email;
                          //$sess_data['tgl_login']=$tgl_login;
-                         //$sess_data['jam_login']=$jam_login;
+                         //$sess_data['jaM_login']=$jaM_login;
                          $this->session->set_userdata($sess_data);
                     }
                          $sess_data['level']=$qad->level;
@@ -61,7 +61,7 @@ class login extends CI_Controller
                               'OS'=>$this->agent->platform(),
                               'IP'=>$this->input->ip_address()
                          );
-                         $this->m_login->log($insert,'log_login');
+                         $this->M_login->log($insert,'log_login');
                          $this->session->set_userdata($sess_data);
                          redirect('index.php/back/dashboard');
                }
@@ -81,7 +81,7 @@ class login extends CI_Controller
     //       $where = array(
     //            'id_reg'=>$id
     //       );
-    //       $this->m_login->condition($status_user,$where,'user');
+    //       $this->M_login->condition($status_user,$where,'user');
     //       $sess_data = array(
     //       'id_reg' => NULL,
     //       'oauth_provider' => NULL,
@@ -287,9 +287,9 @@ class login extends CI_Controller
     //                 redirect('login/confirm');
     //            }
     //            else{
-    //                 $cek_ver_mail = $this->m_login->cekmail_vercode($email);
-    //                 $cek_ver_code = $this->m_login->cek_ver_code($ver_code);
-    //                 $cek_all = $this->m_login->cek_all($email)->result();
+    //                 $cek_ver_mail = $this->M_login->cekmail_vercode($email);
+    //                 $cek_ver_code = $this->M_login->cek_ver_code($ver_code);
+    //                 $cek_all = $this->M_login->cek_all($email)->result();
     //                 if($cek_ver_mail->num_rows() < 1){
     //                      $this->session->set_flashdata('result_login','Email Can not be Verifyed!!, try to register first!');
     //                      redirect('login/confirm');
@@ -314,14 +314,14 @@ class login extends CI_Controller
     //                                     'level'=>'1',
     //                                     'status'=>'Activated'
     //                                );
-    //                           $this->m_login->add_user($data_input,'user');
+    //                           $this->M_login->add_user($data_input,'user');
     //                           $data_update=array(
     //                                'status'=>'Activated'
     //                           );
     //                           $where = array(
     //                                'id_reg'=>$code
     //                           );
-    //                           $this->m_login->update_atv($where,$data_update,'ver_code');
+    //                           $this->M_login->update_atv($where,$data_update,'ver_code');
     //                           $this->session->set_flashdata('result_login','Your Account has been activated, please login!!');
     //                           $add_profile = array(
     //                                'id_reg'=>$code,
@@ -329,7 +329,7 @@ class login extends CI_Controller
     //                                'email'=>$email,
     //                                'photo'=>'img_profile/blank.png'
     //                           );
-    //                           $this->m_login->add_profile($add_profile,'app_profile');
+    //                           $this->M_login->add_profile($add_profile,'app_profile');
     //                           $path = './img_post/'.$code;
     //                           mkdir($path,0755,TRUE);
     //                           copy('./img_post/blank.jpg', $path."blank.jpg");
@@ -346,7 +346,7 @@ class login extends CI_Controller
     //       function reset_pro(){
     //       $email = $this->input->post('email');
     //       $this->form_validation->set_rules('email','email','required|valid_email');
-    //       $cek_email = $this->m_login->cek_all($email)->result();
+    //       $cek_email = $this->M_login->cek_all($email)->result();
     //       if($this->form_validation->run() == FALSE){
     //            $this->session->set_flashdata('result_login','Field Can not be empty');
     //            redirect('login/reset');
@@ -419,7 +419,7 @@ class login extends CI_Controller
     //            }
     //            else{
     //                 //cek 1st step email + old pass
-    //                 $cek_email_old = $this->m_login->cek_email_old($hash,$old_md);
+    //                 $cek_email_old = $this->M_login->cek_email_old($hash,$old_md);
     //                 $rs_cek_email_old = $cek_email_old->num_rows();
     //                 if($rs_cek_email_old==0){
     //                      $this->session->set_flashdata('result_login','Old password is not match');
@@ -435,14 +435,14 @@ class login extends CI_Controller
     //                           $where_reg = array(
     //                                'email'=>$hash
     //                           );
-    //                           $this->m_login->update_pass_reg($where_reg,$data_update_reg,'registration');
+    //                           $this->M_login->update_pass_reg($where_reg,$data_update_reg,'registration');
     //                           $data_update_user = array(
     //                                'pass'=>$new_md
     //                           );
     //                           $where_user=array(
     //                                'email'=>$hash
     //                           );
-    //                           $this->m_login->update_pass_user($where_user,$data_update_user,'user');
+    //                           $this->M_login->update_pass_user($where_user,$data_update_user,'user');
     //                           $this->session->set_flashdata('result_login','Password reset successfuly, please login to start new session');
     //                           redirect('login');
     //                      }
@@ -480,10 +480,10 @@ class login extends CI_Controller
     // //       $val_code= rand(0,999999);
     // //       $id_profil= rand(0,99999900);
           
-    // //       $getidfacebook_onreg = $this->m_login->get_id_face_reg($id_fb);
-    // //       $getidfacebook_onprofile = $this->m_login->get_id_face_profile($id_fb);
-    // //       $getidfacebook_onuser = $this->m_login->get_id_face_user($id_fb);
-    // //       $getidfacebook_onver = $this->m_login->get_id_face_ver($id_fb);
+    // //       $getidfacebook_onreg = $this->M_login->get_id_face_reg($id_fb);
+    // //       $getidfacebook_onprofile = $this->M_login->get_id_face_profile($id_fb);
+    // //       $getidfacebook_onuser = $this->M_login->get_id_face_user($id_fb);
+    // //       $getidfacebook_onver = $this->M_login->get_id_face_ver($id_fb);
     // //       if ($this->agent->is_browser()){
     // //            $agent = $this->agent->browser().' '.$this->agent->version();
     // //       }elseif ($this->agent->is_mobile()){
@@ -504,7 +504,7 @@ class login extends CI_Controller
     // //            'IP'=>$this->input->ip_address()
 
     // //       );
-    // //       $this->m_login->register($data,'registration');
+    // //       $this->M_login->register($data,'registration');
     // //       redirect('login/oauth_insert');
     // //       }
     // //       elseif($getidfacebook_onprofile->num_rows()==0){
@@ -514,7 +514,7 @@ class login extends CI_Controller
     // //                 'email'=>'',
     // //                 'photo'=>$image
     // //            );
-    // //            $this->m_login->add_profile($add_profile,'app_profile');
+    // //            $this->M_login->add_profile($add_profile,'app_profile');
     // //            redirect('login/oauth_insert');
     // //       }
     // //       elseif($getidfacebook_onuser->num_rows()==0){
@@ -524,7 +524,7 @@ class login extends CI_Controller
     // //                 'status'=>'Activated',
     // //                 'condition'=>'online'
     // //            );
-    // //            $this->m_login->add_user($data_input,'user');
+    // //            $this->M_login->add_user($data_input,'user');
     // //            redirect('login/oauth_insert');
     // //       }
     // //       elseif($getidfacebook_onver->num_rows()==0){
@@ -534,7 +534,7 @@ class login extends CI_Controller
     // //                 'id_reg'=>$id_fb,
     // //                 'status'=>'Activated'
     // //            );
-    // //            $this->m_login->register_val_code($val,'ver_code');
+    // //            $this->M_login->register_val_code($val,'ver_code');
     // //            redirect('login/oauth_insert');
     // //       }
     // //       else{

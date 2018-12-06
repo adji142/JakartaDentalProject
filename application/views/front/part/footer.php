@@ -248,6 +248,7 @@ $instagram="";
     <script src="<?php echo base_url();?>front/js/jquery-2.2.3.min.js"></script>
     <!-- //js -->
 	<script src="<?php echo base_url();?>front/js/minimal-slider.js"></script>
+	<script src="<?php echo base_url();?>front/js/jquery.chocolat.js"></script>
 <!-- flexSlider (for testimonials) -->
 		<!-- Calendar -->
 				<link rel="stylesheet" href="<?php echo base_url();?>front/css/jquery-ui.css" />
@@ -324,8 +325,14 @@ $instagram="";
         });
     </script>
     <script src="<?php echo base_url();?>front/js/SmoothScroll.min.js"></script>
+    <script type="text/javascript">
+		$(function () {
+			$('.gallery-grid1 a').Chocolat();
+		});
+	</script>
     <!-- //smooth-scrolling-of-move-up -->
     <!-- Bootstrap core JavaScript
+
 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="<?php echo base_url();?>front/js/bootstrap.js"></script>

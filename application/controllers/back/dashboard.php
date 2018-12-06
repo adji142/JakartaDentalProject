@@ -8,8 +8,8 @@
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model('back/m_dash');
-			$this->load->model('back/m_controllroom');
+			$this->load->model('M_dash');
+			$this->load->model('M_controllroom');
 			// $this->load->model('back/m_profile');
 			// $this->load->model('back/m_ongoing');
 			// $this->load->model('back/m_expired');
@@ -24,7 +24,7 @@
 				redirect('index.php/login');
 			}
 			else{
-			// $data['user']=$this->m_dash->sidebar_mn($level)->result();""
+			// $data['user']=$this->M_dash->sidebar_mn($level)->result();""
 			$data['title']="Dashboard - Towo.com";
 			$this->load->view('back/dashboard',$data);
 			}
@@ -123,7 +123,7 @@
 			$where = array(
 				'id_reg'=>$id_reg
 			);
-			$this->m_dash->upload($update,$where,'app_profile');
+			$this->M_dash->upload($update,$where,'app_profile');
 			$this->session->set_flashdata('result_upload','
 				<div class="col-lg-12 connectedSortable">
 				<div class="alert alert-success alert-dismissible">

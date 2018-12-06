@@ -1,6 +1,6 @@
 <?php
 $id_reg = $this->session->userdata('id_reg');
-  $user=$this->m_dash->user_info($id_reg)->result();
+  $user=$this->M_dash->user_info($id_reg)->result();
 $username='';
 $status='';
 $photo='';
@@ -47,7 +47,7 @@ $photo='';
         </li>
         <?php
         $level = 1;
-        $user=$this->m_dash->sidebar_mn($level)->result();
+        $user=$this->M_dash->sidebar_mn($level)->result();
         foreach ($user as $lv) {
           echo '<li>';
           echo ''.anchor($lv->Link,'<i class="fa '.$lv->Logo.'"></i> <span>'.$lv->Name.'</span>');

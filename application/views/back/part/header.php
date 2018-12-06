@@ -1,6 +1,6 @@
 <?php
   $id_reg = $this->session->userdata('id');
-  $user=$this->m_dash->user_info($id_reg)->result();
+  $user=$this->M_dash->user_info($id_reg)->result();
   // var_dump($user);
   $status='';
   $username='';

@@ -23,6 +23,7 @@
     <!-- //Custom Theme files -->
 	<link href="<?php echo base_url();?>front/css/minimal-slider.css" rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="<?php echo base_url();?>front/css/flexslider.css" type="text/css" media="screen" property="" />
+    <link rel="stylesheet" href="<?php echo base_url();?>front/css/chocolat.css" type="text/css" media="screen">
     <!-- online-fonts -->
 	<link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet"><!-- //online-fonts -->
@@ -41,14 +42,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-lg-auto text-center">
                         <li class="nav-item active  mr-3 mt-lg-0 mt-3">
-                            <a class="nav-link" href="index.html">Home
+                            <a class="nav-link" href="<?php echo base_url();?>">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item  mr-3 mt-lg-0 mt-3">
-                            <a class="nav-link" href="services.html">services</a>
+                            <a class="nav-link" href="#team">Team</a>
                         </li>
-                        <li class="nav-item dropdown mr-3 mt-lg-0 mt-3">
+                        <!-- <li class="nav-item dropdown mr-3 mt-lg-0 mt-3">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
                                 Dropdown
@@ -58,18 +59,21 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="typo.html">Typography</a>
                             </div>
-                        </li>
+                        </li> -->
                         <li class="nav-item mr-3 mt-lg-0 mt-3">
-                            <a class="nav-link" href="gallery.html">Gallery</a>
+                            <a class="nav-link" href="#galeri">Gallery</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#promo">Promo</a>
                         </li>
                         <li>
                             <!-- <button type="button" class="btn  ml-lg-2 w3ls-btn" data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
                                 Login
                             </button> -->
-                            <a href="<?php echo base_url('index.php/login')?>"><span class="btn  ml-lg-2 w3ls-btn">Login</span></a>
+                            <a href="<?php echo base_url('index.php/Login')?>"><span class="btn  ml-lg-2 w3ls-btn">Login</span></a>
                         </li>
                     </ul>
                 </div>
